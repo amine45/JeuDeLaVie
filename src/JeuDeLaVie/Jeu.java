@@ -166,9 +166,10 @@ public class Jeu {
 		int generation = 0;
 		
 		public void actionPerformed(ActionEvent e) {
+		
 			if (generation !=0){
+				univers.display();
 			
-			univers.display();
 			
 			System.out.println("Numero génération : " + generation);
 		}
