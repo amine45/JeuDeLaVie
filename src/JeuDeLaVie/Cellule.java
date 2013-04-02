@@ -1,5 +1,6 @@
 
 package JeuDeLaVie;
+// Amine 
 
 /**
  * <b>Cellule est la classe qui représente une cellule du Jeu de la Vie.</b>
