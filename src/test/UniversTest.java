@@ -14,7 +14,16 @@ public class UniversTest {
     protected Univers uni ;
 	@Test
 	public void testCellExists() {
-		fail("Not yet implemented");
+		Coordonnees coord,coord1,coord2;
+		coord2 = new Coordonnees (0,0);
+		c = new Cellule (coord=new Coordonnees(1,2),"vivante");
+		Cellule s = new Cellule(coord1=new Coordonnees(2,3),"morte");
+		uni = new Univers();
+		uni.getLemonde().add(c);
+		uni.getCelmortes().add(s);
+		org.junit.Assert.assertEquals(c,uni.cellExists(coord));
+		org.junit.Assert.assertEquals(s,uni.cellExists(coord1));
+		org.junit.Assert.assertEquals(new Cellule(coord2,"vivante"),uni.cellExists(coord2));
 	}
 
 	@Test
@@ -61,7 +70,8 @@ public class UniversTest {
 		Coordonnees s;
 		uni = new Univers ();
 		c = new Cellule(s = new Coordonnees(1, 1), "vivante");
-        org.junit.Assert.assertEquals(s, uni.checkCoord(s.x,s.y));
+        org.junit.Assert.assertEquals(s.x, (uni.checkCoord(s.x,s.y)).x);
+        org.junit.Assert.assertEquals(s.y, (uni.checkCoord(s.x,s.y)).y);
 	}
 
 	@Test
@@ -123,22 +133,35 @@ public class UniversTest {
 
 	@Test
 	public void testGetLemonde() {
-		fail("Not yet implemented");
+		uni = new Univers ();
+		ArrayList<Cellule> s = new ArrayList<Cellule>();
+		uni.setLemonde(s);
+	    org.junit.Assert.assertEquals(s,uni.getLemonde());
 	}
 
 	@Test
 	public void testSetLemonde() {
-		fail("Not yet implemented");
+		uni = new Univers();
+		ArrayList<Cellule> s = new ArrayList<Cellule>();
+		uni.setLemonde(s);
+	    org.junit.Assert.assertEquals(s,uni.getLemonde());
+		
 	}
 
 	@Test
 	public void testGetCelmortes() {
-		fail("Not yet implemented");
+		uni = new Univers ();
+		ArrayList<Cellule> s = new ArrayList<Cellule>();
+		uni.setCelmortes(s);
+	    org.junit.Assert.assertEquals(s,uni.getCelmortes());
 	}
 
 	@Test
 	public void testSetCelmortes() {
-		fail("Not yet implemented");
+		uni = new Univers();
+		ArrayList<Cellule> s = new ArrayList<Cellule>();
+		uni.setCelmortes(s);
+	    org.junit.Assert.assertEquals(s,uni.getCelmortes());
 	}
 
 }
