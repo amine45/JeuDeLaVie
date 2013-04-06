@@ -26,6 +26,11 @@ public class EtudesAsymptote{
 			}
 		}
 	}
+	public EtudesAsymptote(Univers a){
+		verif_stable=new Univers();
+		verif_oscillateur=new Univers();
+		verif_vaisseau=new Univers();
+	}
 
 	public boolean Mort(Univers a){
 		return a.getLemonde().isEmpty();

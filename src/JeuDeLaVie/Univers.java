@@ -1,4 +1,5 @@
 package JeuDeLaVie;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -59,10 +60,11 @@ public class Univers {
 	 * Constructeur Univers à partir d'un fichier lif.
 	 * <p>
 	 * A la construction d'un Univers, on initialise la 1ere cellule selon le
-	 * monde: l'id_monde 1 représente le monde infini on initialise la 1ère cellule au
-	 * coordonnée notée après #P, l'id_monde 2 représente le monde circulaire on
-	 * initialise la 1ère cellule au coordonnée (0,0) et l'id_monde 3 représente le monde
-	 * frontiere on initialise la 1ère cellule au coordonnée (0,0).
+	 * monde: l'id_monde 1 représente le monde infini on initialise la 1ère
+	 * cellule au coordonnée notée après #P, l'id_monde 2 représente le monde
+	 * circulaire on initialise la 1ère cellule au coordonnée (0,0) et
+	 * l'id_monde 3 représente le monde frontiere on initialise la 1ère cellule
+	 * au coordonnée (0,0).
 	 * </p>
 	 * 
 	 */
@@ -97,13 +99,14 @@ public class Univers {
 		Scanner st = new Scanner(ligne);
 		String c1;
 		c1 = st.next();
-
+// throw Exception in case it's not an Integer 
 		if (c1.equals("#P")) {
 			if (id_monde == 1) {
+				try{
 				numligne = Integer.parseInt(st.next());
 				this.minligne = numligne;
 				numcolonne = Integer.parseInt(st.next());
-				this.mincolonne = numcolonne;
+				this.mincolonne = numcolonne;}catch(Exception e){System.out.println("Error input ");}
 			} else {
 				minligne = 0;
 				mincolonne = 0;
@@ -191,9 +194,9 @@ public class Univers {
 					dy = j + (e / 3);
 
 					if (dx != i + 1 || dy != j + 1) {
-						if (checkCoord(dx, dy).valide){
-						tab[f] = cellExists(checkCoord(dx, dy));
-						}else{
+						if (checkCoord(dx, dy).valide) {
+							tab[f] = cellExists(checkCoord(dx, dy));
+						} else {
 							tab[f] = null;
 						}
 						f++;
@@ -294,7 +297,6 @@ public class Univers {
 		}
 		Collections.sort(this.lemonde);
 	}
-
 
 	/**
 	 * Permet d'afficher l'univers sous forme de tableau. Les cellules vivantes
