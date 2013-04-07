@@ -1,7 +1,8 @@
 package JeuDeLaVie;
 /**
  * 
- * Décrire la classe !
+ * Classe UniversCirculaire représente le monde circulaire , cette classe hérite de
+ * Univers et donc a les memes attributs que Univers , la méthode checkCoord est redéfinie. 
  *
  */
 public class UniversCirculaire extends Univers {
@@ -24,6 +25,7 @@ public class UniversCirculaire extends Univers {
 	 *            la colonne
 	 *            
 	 * @return La ligne et la colonne sous forme de coordonnées
+	 * @author Boufatah-Manivannin
 	 */
 	public Coordonnees checkCoord(int l, int c) { 
 		Coordonnees s = new Coordonnees(l, c);

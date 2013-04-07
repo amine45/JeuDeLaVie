@@ -8,9 +8,10 @@ import java.util.Iterator;
 import java.util.Scanner;
 
 /**
- * Décrire la classe !
- * 
- * 
+ * Classe Univers représente le monde infini , elle contient 2 ArrayList : lemonde
+ * (qui contient les cellules vivantes) et celmortes (qui contient les cellules mortes)
+ * et aussi des attributs minligne mincolonne nbligne nbcolonne qui représentent la 
+ * taille de notre monde au début de l'exécution .
  */
 public class Univers {
 
@@ -66,7 +67,7 @@ public class Univers {
 	 * l'id_monde 3 représente le monde frontiere on initialise la 1ère cellule
 	 * au coordonnée (0,0).
 	 * </p>
-	 * 
+	 * @author Martin
 	 */
 	public Univers(String file, int id_monde) {
 
@@ -149,7 +150,7 @@ public class Univers {
 	 * 
 	 * @return la cellule correspondante au coordonnées passées en paramètre.
 	 * 
-	 * 
+	 * @author Manivannin
 	 */
 	public Cellule cellExists(Coordonnees s) {
 		if (s.valide) {
@@ -174,7 +175,7 @@ public class Univers {
 	 * Ajoute les 8 cellules voisines de chaques cellules vivantes. Puis on
 	 * compte les cellules vivantes parmi les 8 pour leur attribuer un état
 	 * suivant.
-	 * 
+	 * @author Boufatah-Manivannin
 	 */
 
 	public void addDeadCells() {
@@ -228,7 +229,7 @@ public class Univers {
 	/**
 	 * Ajoute les 8 cellules voisines de chaques cellules mortes. Puis on compte
 	 * les cellules vivantes parmi les 8 pour leur attribuer un état suivant.
-	 * 
+	 * @author Boufatah-Manivannin
 	 */
 	public void verifyListDeadCells() {
 		int i, j, dx, dy;
@@ -266,7 +267,7 @@ public class Univers {
 	 * vivantes, les cellules devenues mortes. Ajoute dans la liste des cellules
 	 * vivantes, les cellules devenues vivantes et les supprime de la liste des
 	 * cellules mortes.
-	 * 
+	 * @author Boufatah-Manivannin
 	 */
 
 	public void changeState() {
@@ -302,7 +303,7 @@ public class Univers {
 	 * Permet d'afficher l'univers sous forme de tableau. Les cellules vivantes
 	 * sont représentées par des "*". Pour le monde infini on affiche que la
 	 * taille maximale du fichier lif.
-	 * 
+	 * @author Boufatah-Manivannin
 	 */
 	public void display() {
 		for (int i = minligne; i <= (minligne + nbligne) - 1; i++) {
@@ -329,6 +330,7 @@ public class Univers {
 	 *            la colonne
 	 * 
 	 * @return true si la cellule est présente dans la liste, false sinon.
+	 * @author Boufatah
 	 */
 	public boolean isPresent(int i, int j) {
 		Iterator<Cellule> it = lemonde.iterator();
@@ -356,6 +358,7 @@ public class Univers {
 	 *            la colonne
 	 * 
 	 * @return la coordonnée avec la ligne a et la colonne b.
+	 *@author Boufatah
 	 */
 	public Coordonnees checkCoord(int a, int b) {
 		return new Coordonnees(a, b);
@@ -363,7 +366,7 @@ public class Univers {
 
 	/**
 	 * Calcule une nouvelle génération en utilisant les différentes méthodes.
-	 * 
+	 *@author Manivannin 
 	 */
 	public void nextGeneration() {
 		this.addDeadCells();

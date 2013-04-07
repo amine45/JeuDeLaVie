@@ -1,7 +1,9 @@
 package JeuDeLaVie;
 /**
  * 
- * Décrire la classe !
+ * Classe UniversFrontiere représente un monde avec frontieres (échiquier fini)
+ * Cette classe hérite de la classe Univers et a donc les memes attributs 
+ * la méthode checkCoord est redéfinie  . 
  *
  */
 public class UniversFrontiere extends Univers {
@@ -26,6 +28,7 @@ public class UniversFrontiere extends Univers {
 	 *            la colonne
 	 *            
 	 * @return La ligne et la colonne sous forme de coordonnées
+	 * @author Martin
 	 */
 	public Coordonnees checkCoord(int l, int c) {
 		Coordonnees s = new Coordonnees(l, c);
