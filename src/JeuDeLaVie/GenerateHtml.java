@@ -1,9 +1,11 @@
 package JeuDeLaVie;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Properties;
 
 public class GenerateHtml {
@@ -29,6 +31,24 @@ public class GenerateHtml {
 		}
 	}
 
+	public void writeFileHtml(ArrayList<Jeu> res) {
+		StringBuffer html = new StringBuffer();
+		try {
+			FileWriter write = new FileWriter(new File("resultat.html"));
+			write.write(""+resultsGame(res));
+			write.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	}
+ public StringBuffer resultsGame(ArrayList<Jeu> res){
+	 StringBuffer html = new StringBuffer();
+	html.append("<html><head><title>Resultats Jeu</title></head><body>");
+	// à completer 
+	html.append("</body></html>");
+	return html;
+ }
 	public void listerFiles(String s) throws IOException {
 		File fichier = new File(s);
 		if (fichier.isDirectory()) {
