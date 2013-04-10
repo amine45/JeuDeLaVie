@@ -1,7 +1,5 @@
 package test;
 
-
-
 import java.util.ArrayList;
 
 import org.junit.Test;
@@ -9,7 +7,7 @@ import JeuDeLaVie.Cellule;
 import JeuDeLaVie.Coordonnees;
 import JeuDeLaVie.Univers;
 
-public class TestUnivers{
+public class TestUnivers {
 	protected Cellule c;
 	protected Univers uni;
 
@@ -106,7 +104,7 @@ public class TestUnivers{
 
 	@Test
 	public void testNextGeneration() {
-		Cellule a, b,  f, g;
+		Cellule a, b, f, g;
 		uni = new Univers();
 		a = new Cellule(new Coordonnees(0, 1), "vivante");
 		b = new Cellule(new Coordonnees(2, 1), "vivante");

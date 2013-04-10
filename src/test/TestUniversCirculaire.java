@@ -1,15 +1,17 @@
 package test;
 
-
-
 import org.junit.Test;
 import JeuDeLaVie.Cellule;
 import JeuDeLaVie.Coordonnees;
 import JeuDeLaVie.UniversCirculaire;
 
-public class TestUniversCirculaire {
-	public Cellule c;
-	public UniversCirculaire uni;
+public class TestUniversCirculaire extends TestUnivers {
+	//public Cellule c;
+	//public UniversCirculaire uni;
+
+	public TestUniversCirculaire() {
+		super();
+	}
 
 	@Test
 	public void testCheckCoord() {

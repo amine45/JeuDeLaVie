@@ -1,4 +1,5 @@
 package JeuDeLaVie;
+
 import java.awt.Event;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -6,17 +7,16 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.Scanner;
 import javax.swing.Timer;
+
 /**
  * 
  * Décrire la classe !
- *
+ * 
  */
 public class Jeu {
 
-
 	public int option;
 
-	
 	public Jeu(String[] args) throws IOException {
 		try {
 			switch (Choix(args)) {
@@ -27,13 +27,13 @@ public class Jeu {
 				ListeOption();
 				break;
 			case 3:
-				Univers u=choixUnivers(args[2]);
-				SimulationJeu(Integer.parseInt(args[1]),u);
+				Univers u = choixUnivers(args[2]);
+				SimulationJeu(Integer.parseInt(args[1]), u);
 				break;
 			case 4:
-				Univers u2=choixUnivers(args[2]);
-				EtudesAsymptote et=new EtudesAsymptote(u2,args[2]);
-				Evolution(Integer.parseInt(args[1]),u2,et);
+				Univers u2 = choixUnivers(args[2]);
+				EtudesAsymptote et = new EtudesAsymptote(u2, args[2]);
+				Evolution(Integer.parseInt(args[1]), u2, et);
 			case 5:
 				GenerateHtml ml = new GenerateHtml();
 				ml.openFile("index.html");
@@ -72,8 +72,8 @@ public class Jeu {
 				.println("** java -jar JeuDeLaVie.jar -w max dossier : calcule le type d’évolution de tous les jeux contenus dans le dossier passé en paramètre et affiche les résultats sous la forme d’un fichier html");
 		System.out.println();
 	}
-	
-	public Univers choixUnivers(String file){
+
+	public Univers choixUnivers(String file) {
 		int monde;
 		Scanner sc = new Scanner(System.in);
 		do {
@@ -85,15 +85,15 @@ public class Jeu {
 			monde = sc.nextInt();
 		} while (monde != 1 && monde != 2 && monde != 3);
 		Univers univers;
-		if (monde==1){
-			univers=new Univers(file,1);
-		}else{
-			if (monde==2){
-				univers=new UniversCirculaire(file,2);
-				}else{
-					univers=new UniversFrontiere(file,3);
-				}
+		if (monde == 1) {
+			univers = new Univers(file, 1);
+		} else {
+			if (monde == 2) {
+				univers = new UniversCirculaire(file, 2);
+			} else {
+				univers = new UniversFrontiere(file, 3);
 			}
+		}
 		return univers;
 	}
 
@@ -119,34 +119,31 @@ public class Jeu {
 		} else {
 			throw new ArgException("Erreur arguments");
 		}
-		
 
 	}
 
 	public void SimulationJeu(final int duree, final Univers univers) {
 		Collections.sort(univers.getLemonde());
-		
+
 		final Timer timer = new Timer(350, new ActionListener() {
-			
-			
+
 			int generation = 0;
-			
+
 			public void actionPerformed(ActionEvent e) {
-				if (generation!=0){
-				univers.display();
-				System.out.println("Numero génération : " + generation);
-				univers.nextGeneration();
+				if (generation != 0) {
+					univers.display();
+					System.out.println("Numero génération : " + generation);
+					univers.nextGeneration();
 				}
 				generation = generation + 1;
-				if (generation == duree+1) {
+				if (generation == duree + 1) {
 					System.exit(0);
 				}
 
 				System.out.println((char) Event.ESCAPE + "8");
 			}
-			
-		}
-		);
+
+		});
 		timer.start();
 
 		try {
@@ -154,70 +151,71 @@ public class Jeu {
 		} catch (Exception e) {
 		}
 	}
-	
-	
-	public void Evolution(final int max, final Univers univers, final EtudesAsymptote et){
 
-	Collections.sort(univers.getLemonde());
-	
+	public void Evolution(final int max, final Univers univers,
+			final EtudesAsymptote et) {
 
-	final Timer timer = new Timer(350, new ActionListener() {
-		
-		int generation = 0;
-		
-		public void actionPerformed(ActionEvent e) {
-		
-			if (generation !=0){
-				univers.display();
-			
-			
-			System.out.println("Numero génération : " + generation);
-		}
-			if (et.Mort(univers)){
-				System.out.println("Jeu Mort");
-				System.exit(0);
-			}else{
-			if (et.Stable(univers)){
-				System.out.println("Jeu Stable");
-				System.exit(0);
-			}else{
-				if (generation !=0){
-				if (et.Oscillateur(univers)){
-					System.out.println("Jeu Oscillateur");
-					System.out.println("La période est de "+et.calculePeriode(univers));
+		Collections.sort(univers.getLemonde());
+
+		final Timer timer = new Timer(350, new ActionListener() {
+
+			int generation = 0;
+
+			public void actionPerformed(ActionEvent e) {
+
+				if (generation != 0) {
+					// univers.display();
+					System.out.println("nb elements :"
+							+ univers.getLemonde().size());
+
+					System.out.println("Numero génération : " + generation);
+				}
+				if (et.Mort(univers)) {
+					System.out.println("Jeu Mort");
 					System.exit(0);
-				}else{
-					if (et.Vaisseau(univers)){
-						System.out.println("Jeu Vaisseau");
-						System.out.println("La période est de "+et.calculePeriodeVaisseau(univers));
-						System.out.println("Déplacement :"+et.deplacement(univers));
+				} else {
+					if (et.Stable(univers)) {
+						System.out.println("Jeu Stable");
 						System.exit(0);
+					} else {
+						if (generation != 0) {
+							if (et.Oscillateur(univers)) {
+								System.out.println("Jeu Oscillateur");
+								System.out.println("La période est de "
+										+ et.calculePeriode(univers));
+								System.exit(0);
+							} else {
+								if (et.Vaisseau(univers)) {
+									System.out.println("Jeu Vaisseau");
+									System.out.println("La période est de "
+											+ et.calculePeriodeVaisseau(univers));
+									System.out.println("Déplacement :"
+											+ et.deplacement(univers));
+									System.exit(0);
+								}
+							}
+							// univers.display();
+						}
 					}
 				}
-				
+				univers.nextGeneration();
+
+				generation = generation + 1;
+
+				if (generation == max + 1) {
+					System.out.print("Jeu Inconnu");
+					System.exit(0);
 				}
-			}
-			}
-						univers.nextGeneration();
-					
-				
-			
-			generation = generation + 1;
-			
-			if (generation == max+1) {
-				System.out.print("Jeu Inconnu");
-				System.exit(0);
-			}
 
-			System.out.println((char) Event.ESCAPE + "8");
+				System.out.println((char) Event.ESCAPE + "8");
+			}
+		});
+		timer.start();
+
+		try {
+			System.in.read();
+		} catch (Exception e) {
 		}
-	});
-	timer.start();
+	}
 
-	try {
-		System.in.read();
-	} catch (Exception e) {
-	}
-	}
-	
-	}
+}

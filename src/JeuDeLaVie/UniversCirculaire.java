@@ -15,6 +15,7 @@ public class UniversCirculaire extends Univers {
 		super(file,id_monde);
 	}
 	
+	
 	/**
 	 * Retourne la coordonnée construite à partir des paramètres. Si la coordonnée dépasse du bord, 
 	 * on retourne la coordonnée de la cellule du bord opposée.

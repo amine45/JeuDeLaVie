@@ -29,8 +29,13 @@ public class GenerateHtml {
 			ex.printStackTrace();
 
 		}
-	}
+}
 
+/***
+ * Cette méthode permet d'éditer un fichier html en mettant les résultats des jeux 
+ * dans un tableau 
+ * @param res une ArrayList de Jeu qui contient les résultats de chaque Jeu 
+ */
 	public void writeFileHtml(ArrayList<Jeu> res) {
 		StringBuffer html = new StringBuffer();
 		try {
